@@ -1,14 +1,59 @@
 package bomba;
 
 import javax.swing.JPanel;
+import javax.swing.ButtonGroup;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.Color;
+import javax.swing.JButton;
 
-public class LogicaProposicional2 extends JPanel {
+public class LogicaProposicional2 extends Enigma {
 
-	/**
-	 * Create the panel.
-	 */
+	private boolean desarmed;
+	private int respostaCorreta;
+	private int respostaErrada;
+	
+	
+	
+	public boolean isDesarmed() {
+		return desarmed;
+	}
+
+
+
+	public void setDesarmed(boolean desarmed) {
+		this.desarmed = desarmed;
+	}
+
+
+
+	public int getRespostaCorreta() {
+		return respostaCorreta;
+	}
+
+
+
+	public void setRespostaCorreta(int respostaCorreta) {
+		this.respostaCorreta = respostaCorreta;
+	}
+
+
+
+	public int getRespostaErrada() {
+		return respostaErrada;
+	}
+
+
+
+	public void setRespostaErrada(int respostaErrada) {
+		this.respostaErrada = respostaErrada;
+	}
+
+
+
 	public LogicaProposicional2() {
 		setLayout(null);
 		
@@ -57,12 +102,89 @@ public class LogicaProposicional2 extends JPanel {
 		add(rdbtnNewRadioButton_1);
 		
 		JRadioButton rdbtnNewRadioButton_2 = new JRadioButton("III e IV.");
-		rdbtnNewRadioButton_2.setBounds(192, 192, 109, 23);
+		rdbtnNewRadioButton_2.setBounds(136, 193, 89, 23);
 		add(rdbtnNewRadioButton_2);
 		
 		JRadioButton rdbtnNewRadioButton_3 = new JRadioButton("II, III e IV.");
-		rdbtnNewRadioButton_3.setBounds(192, 218, 109, 23);
+		rdbtnNewRadioButton_3.setBounds(136, 218, 89, 23);
 		add(rdbtnNewRadioButton_3);
+		
+		JLabel LabelArmed = new JLabel("Armado");
+		LabelArmed.setForeground(Color.RED);
+		LabelArmed.setFont(new Font("Tahoma", Font.BOLD, 12));
+		LabelArmed.setBounds(212, 11, 48, 15);
+		add(LabelArmed);
+		
+		ButtonGroup group = new ButtonGroup();
+		group.add(rdbtnNewRadioButton);
+		group.add(rdbtnNewRadioButton_1);
+		group.add(rdbtnNewRadioButton_2);
+		group.add(rdbtnNewRadioButton_3);
+		
+		JLabel LabelDesarmed = new JLabel("Desarmado");
+		LabelDesarmed.setFont(new Font("Tahoma", Font.BOLD, 12));
+		LabelDesarmed.setForeground(new Color(50, 205, 50));
+		LabelDesarmed.setBounds(258, 12, 82, 14);
+		LabelDesarmed.setVisible(false);
+		add(LabelDesarmed);
+		
+		JButton btnNewButton = new JButton("Confirmar");
+		btnNewButton.setBackground(new Color(65, 105, 225));
+		btnNewButton.setBounds(235, 216, 89, 23);
+		add(btnNewButton);
+		
+		JLabel tryAgain = new JLabel("Tente novamente!");
+		tryAgain.setForeground(new Color(65, 105, 225));
+		tryAgain.setBounds(235, 196, 90, 14);
+		add(tryAgain);
+		tryAgain.setVisible(false);
+		
+		rdbtnNewRadioButton.addActionListener(null);
+		rdbtnNewRadioButton_1.addActionListener(null);
+		rdbtnNewRadioButton_2.addActionListener(null);
+		rdbtnNewRadioButton_3.addActionListener(null);
+		
+		btnNewButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				tryAgain.setVisible(true);
+				respostaErrada++;
+				if(rdbtnNewRadioButton_1.isSelected()) {
+					LabelArmed.setVisible(false);
+					LabelDesarmed.setVisible(true);
+					lblNewLabel.setEnabled(false);
+					lblNewLabel_1.setEnabled(false);
+					lblNewLabel_2.setEnabled(false);
+					lblNewLabel_3.setEnabled(false);
+					lblNewLabel_4.setEnabled(false);
+					lblNewLabel_5.setEnabled(false);
+					lblNewLabel_6.setEnabled(false);
+					lblNewLabel_7.setEnabled(false);
+					lblNewLabel_8.setEnabled(false);
+					rdbtnNewRadioButton.setEnabled(false);
+					rdbtnNewRadioButton_1.setEnabled(false);
+					rdbtnNewRadioButton_2.setEnabled(false);
+					rdbtnNewRadioButton_3.setEnabled(false);
+					btnNewButton.setEnabled(false);
+					tryAgain.setVisible(false);
+					desarmed = true;
+					respostaCorreta++;
+				}
+				if(rdbtnNewRadioButton.isSelected()) {
+					tryAgain.setVisible(true);
+					respostaErrada++;
+				}
+				if(rdbtnNewRadioButton_2.isSelected()) {
+					tryAgain.setVisible(true);
+					respostaErrada++;
+				}
+				if(rdbtnNewRadioButton_3.isSelected()) {
+					tryAgain.setVisible(true);
+					respostaErrada++;
+				}
+				
+			}
+		});
 
 	}
 

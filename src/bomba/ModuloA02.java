@@ -1,6 +1,6 @@
 package bomba;
 
-public class ModuloA02 implements ModuleInterface{
+public class ModuloA02{
 	
 	private int qtdAtivacoes;
 
